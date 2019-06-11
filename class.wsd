@@ -1,0 +1,52 @@
+@startuml
+Person *-- "1" Name
+
+Student --|> Person
+Student "n" o-o "n" Course : registered in >
+Student *-- "n" Grade
+
+Instructor --|> Person
+Instructor "1" o-o "n" Course : teaches >
+
+Grade o-- "1" Course
+
+abstract class Person {
+    +Person(Name name)
+    +changeName(Name newName)
+}
+
+class Student {
+    -String studentNumber
+    +gpa()
+    +getStudentNumber()
+}
+
+class Instructor {
+
+}
+
+class Course {
+    -Int courseCode
+    -String title
+    
+    +registerStudent(Student student)
+    +size() : Int
+}
+
+class Grade {
+    -Float percentage
+
+    +letterGrade()
+    +percentageGrade()
+}
+
+class Name {
+    #String first
+    #String last
+
+    +Name(String first, String last)
+    +firstname() : String
+    +lastname() : String
+    +fullname() : String
+}
+@enduml
